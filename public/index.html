@@ -10,6 +10,7 @@
 
     <div id="LoginScreen">
       <button id="login">Login with Google</button>
+      <button id="loginf">Login with FaceBook</button>
     </div>
 
     <div id="dashboard">
@@ -42,9 +43,11 @@
       document.getElementById('dashboard').style.display="none"
 
       document.getElementById('login').addEventListener('click', GoogleLogin)
+      document.getElementById('loginf').addEventListener('click', FaceBookLogin)
       document.getElementById('logout').addEventListener('click', LogoutUser)
 
       let provider = new firebase.auth.GoogleAuthProvider()
+      let fprovider = new firebase.auth.FacebookAuthProvider();
 
       function GoogleLogin(){
         console.log('Login Btn Call')
@@ -53,7 +56,20 @@
           document.getElementById('LoginScreen').style.display="none"
           document.getElementById('dashboard').style.display="block"
           showUserDetails(res.user)
+          console.log(res.user)
         }).catch(e=>{
+          console.log(e)
+        })
+      }
+
+      function FaceBookLogin(){
+        console.log('Login Btn Call')
+        firebase.auth.signInWithPopup(fprovider).then(res=>{
+          console.log(res)
+          document.getElementById('LoginScreen').style.display="none"
+          document.getElementById('dashboard').style.display="block"
+        })
+        .catch(e=>{
           console.log(e)
         })
       }
@@ -90,4 +106,4 @@
       checkAuthState()
     </script>
   </body>
-</html>
+</html> 
