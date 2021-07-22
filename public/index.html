@@ -47,7 +47,7 @@
       document.getElementById('logout').addEventListener('click', LogoutUser)
 
       let provider = new firebase.auth.GoogleAuthProvider()
-      let fprovider = new firebase.auth.FacebookAuthProvider();
+      let provider2 = new firebase.auth.FacebookAuthProvider()
 
       function GoogleLogin(){
         console.log('Login Btn Call')
@@ -56,7 +56,6 @@
           document.getElementById('LoginScreen').style.display="none"
           document.getElementById('dashboard').style.display="block"
           showUserDetails(res.user)
-          console.log(res.user)
         }).catch(e=>{
           console.log(e)
         })
@@ -64,8 +63,8 @@
 
       function FaceBookLogin(){
         console.log('Login Btn Call')
-        firebase.auth.signInWithPopup(fprovider).then(res=>{
-          console.log(res)
+        firebase.auth().signInWithPopup(provider2).then((result) => {
+          console.log(result.user)
           document.getElementById('LoginScreen').style.display="none"
           document.getElementById('dashboard').style.display="block"
         })
