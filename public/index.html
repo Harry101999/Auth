@@ -67,6 +67,7 @@
           console.log(result.user)
           document.getElementById('LoginScreen').style.display="none"
           document.getElementById('dashboard').style.display="block"
+          showUserDetails(result.user)
         })
         .catch(e=>{
           console.log(e)
